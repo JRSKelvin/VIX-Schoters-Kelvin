@@ -1,0 +1,10 @@
+package com.latihanrakamin.aplikasisederhana.remote.network
+
+class ApiKeyExample {
+    // Copy This File And Rename File As 'ApiKey.kt'
+    // Rename Class To ApiKey
+    // Then Copy The API Key From The Movie Database To API_KEY String
+    companion object {
+        const val API_KEY = ""
+    }
+}
