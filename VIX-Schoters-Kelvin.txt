@@ -1,0 +1,3 @@
+Nama : Kelvin
+Link Github : https://github.com/JRSKelvin/VIX-Schoters-Kelvin
+Catatan : Sebagai keamanan Key untuk API Key, mohon mengikuti petunjuk yang tersedia pada Remote/Network/ApiKeyExample untuk dapat melakukan Generate APK
