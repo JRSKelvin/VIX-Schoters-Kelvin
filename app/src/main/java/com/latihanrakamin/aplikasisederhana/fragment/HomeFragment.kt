@@ -90,14 +90,14 @@ class HomeFragment : Fragment() {
                 override fun onClickItem(dataSingle: GetTopHeadlinesArticle) {
                     val passDataValue = TopHeadlinesData(
                         idPrimary = -1,
-                        author = dataSingle.author,
-                        content = dataSingle.content,
-                        description = dataSingle.description,
-                        publishedAt = dataSingle.publishedAt,
-                        source = dataSingle.getTopHeadlinesSource.name,
-                        title = dataSingle.title,
-                        url = dataSingle.url,
-                        urlToImage = dataSingle.urlToImage
+                        author = dataSingle.author ?: "Data Null Or Not Found",
+                        content = dataSingle.content ?: "Data Null Or Not Found",
+                        description = dataSingle.description ?: "Data Null Or Not Found",
+                        publishedAt = dataSingle.publishedAt ?: "Data Null Or Not Found",
+                        source = dataSingle.getTopHeadlinesSource.name ?: "Data Null Or Not Found",
+                        title = dataSingle.title ?: "Data Null Or Not Found",
+                        url = dataSingle.url ?: "Data Null Or Not Found",
+                        urlToImage = dataSingle.urlToImage ?: "Data Null Or Not Found"
                     )
                     val navigateDestination = HomeFragmentDirections.actionHomeFragmentToDetailFragment(passDataValue)
                     requireView().findNavController().navigate(navigateDestination)
