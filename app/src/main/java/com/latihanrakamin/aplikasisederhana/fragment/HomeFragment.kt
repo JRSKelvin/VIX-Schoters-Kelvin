@@ -1,10 +1,12 @@
 package com.latihanrakamin.aplikasisederhana.fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,7 @@ import com.latihanrakamin.aplikasisederhana.remote.network.ApiConfig
 import com.latihanrakamin.aplikasisederhana.repository.ApiRepository
 import com.latihanrakamin.aplikasisederhana.viewmodel.ApiViewModel
 import com.latihanrakamin.aplikasisederhana.viewmodel.ApiViewModelFactory
+import kotlin.system.exitProcess
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -45,6 +48,25 @@ class HomeFragment : Fragment() {
             refreshData()
         }
         refreshData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        var timeBack: Long = 0
+        requireView().isFocusableInTouchMode = true
+        requireView().requestFocus()
+        requireView().setOnKeyListener { _, i, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_BACK) {
+                if (System.currentTimeMillis() - timeBack > 1000) {
+                    timeBack = System.currentTimeMillis()
+                    Toast.makeText(requireContext(), "Press Again To Exit App", Toast.LENGTH_LONG).show()
+                } else {
+                    exitProcess(0)
+                }
+                true
+            } else false
+        }
     }
 
     private fun refreshData() {
