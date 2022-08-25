@@ -1,10 +1,12 @@
 package com.latihanrakamin.aplikasisederhana.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,6 +60,22 @@ class BookmarkFragment : Fragment() {
                 }
 
                 override fun onDeleteItem(dataSingle: TopHeadlinesData) {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Are You Sure")
+                        .setMessage("Are You Sure Want Delete This '${dataSingle.title}' Bookmark")
+                        .setPositiveButton("Yes") { _, _ ->
+                            databaseViewModel.deleteTopHeadlines(dataSingle).observe(viewLifecycleOwner) {
+                                println("Return Bookmark Delete Result $it")
+                                if (it == 1) {
+                                    Toast.makeText(requireContext(), "Bookmark Delete Successfully", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(requireContext(), "Bookmark Delete Failed", Toast.LENGTH_SHORT).show()
+                                }
+                                refreshData()
+                            }
+                        }
+                        .setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+                        .show()
                 }
             })
             binding.recyclerViewListContent.adapter = adapter
