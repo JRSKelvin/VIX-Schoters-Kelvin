@@ -42,7 +42,11 @@
         android:id="@+id/detailFragment"
         android:name="com.latihanrakamin.aplikasisederhana.fragment.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="newsDataParcelize"
+            app:argType="com.latihanrakamin.aplikasisederhana.database.data.TopHeadlinesData" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.latihanrakamin.aplikasisederhana.fragment.ProfileFragment"
